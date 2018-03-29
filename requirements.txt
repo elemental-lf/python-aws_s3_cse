@@ -1,2 +1,2 @@
-aes_keywrap
-pycryptodome
+aes_keywrap>=17.12.1
+pycryptodome>=3.5.1
