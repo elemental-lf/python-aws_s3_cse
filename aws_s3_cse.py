@@ -10,17 +10,17 @@ class CSE:
 
         self.master_key = None
 
-        if 'MasterKey' in kwargs:
-            self.master_key = kwargs['MasterKey']
+        if 'master_key' in kwargs:
+            self.master_key = kwargs['master_key']
 
     def decrypt_object(self, data, metadata, **kwargs):
 
-        if 'MasterKey' in kwargs:
-            master_key = kwargs['MasterKey']
+        if 'master_key' in kwargs:
+            master_key = kwargs['master_key']
         elif self.master_key is not None:
             master_key = self.master_key
         else:
-            raise TypeError('required keyword argument MasterKey is missing')
+            raise TypeError('required keyword argument master_key is missing')
 
         if 'x-amz-wrap-alg' not in metadata:
             raise KeyError('Metadata key x-amz-wrap-alg is missing')
@@ -55,12 +55,12 @@ class CSE:
 
     def encrypt_object(self, data, **kwargs):
 
-        if 'MasterKey' in kwargs:
-            master_key = kwargs['MasterKey']
+        if 'master_key' in kwargs:
+            master_key = kwargs['master_key']
         elif self.master_key is not None:
             master_key = self.master_key
         else:
-            raise TypeError('required keyword argument MasterKey is missing')
+            raise TypeError('required keyword argument master_key is missing')
 
         envelope_key = get_random_bytes(32)
         envelope_iv = get_random_bytes(16)
